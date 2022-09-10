@@ -21,7 +21,7 @@ Signature
 class Name(models.Model):
     child_name = models.CharField(
         max_length=256,
-        verbose_name="Çocuk Ad Soyad\nChild's Name Surname\nИмя ребенка Фамилия",
+        verbose_name="Çocuk Ad Soyad",
         help_text="Çocuk Ad Soyad\nChild's Name Surname\nИмя ребенка Фамилия",
     )
     child_age = models.PositiveSmallIntegerField(
@@ -30,7 +30,7 @@ class Name(models.Model):
     )
     permission_leave = models.BooleanField(
         default=False,
-        verbose_name="Yalnız Gidebilir mi ?\nCan child leave the club alone ?\nМожет ли ребенок покинуть клуб один?",
+        verbose_name="Yalnız Gidebilir mi ?",
         help_text="Yalnız Gidebilir mi ?\nCan child leave the club alone ?\nМожет ли ребенок покинуть клуб один?"
     )
     diseases_allergy = models.CharField(
@@ -56,7 +56,7 @@ class Name(models.Model):
     )
     room_number = models.CharField(
         max_length=4,
-        verbose_name='Oda No\nRoom Number\nНомер комнаты',
+        verbose_name='Oda No',
         help_text='Oda No\nRoom Number\nНомер комнаты'
     )
     check_out_date = models.DateField(
@@ -72,3 +72,8 @@ class Name(models.Model):
         verbose_name='Atöliyeye katılım izin\n Разщенение на мастер-класс',
         default=True
     )
+
+    def __str__(self):
+        if self.permission_leave:
+            return f"Name :{self.child_name}\n Room number: {self.room_number}\n Permission : ÇIKABİLİR"
+        return f"Name :{self.child_name}\n Room number: {self.room_number}\n Permission : ÇIKAMAZ "
