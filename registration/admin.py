@@ -1,11 +1,10 @@
 from django.contrib import admin
-from registration.models import Name
+from registration.models import Registration, Child, Parents
 
 
-class NameAdmin(admin.ModelAdmin):
+@admin.register(Registration)
+class RegistrationAdmin(admin.ModelAdmin):
     list_display = (
-        "child_name",
-        "parents_name",
         "room_number",
         "permission_leave",
     )
@@ -13,10 +12,29 @@ class NameAdmin(admin.ModelAdmin):
         "room_number",
     ]
     search_fields = (
-        "child_name",
-        "parents_name",
         "room_number",
         "permission_leave",
     )
-admin.site.register(Name, NameAdmin)
+
+
+@admin.register(Child)
+class ChildAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'surname',
+        'age',
+    )
+    list_filter = (
+        'age',
+    )
+    search_fields = (
+        'name',
+        'surname',
+    )
+
+
+# admin.site.register(Registration, RegistrationAdmin)
 # Register your models here.
+# admin.site.register(Child)
+admin.site.register(Parents)
+# admin.site.register(Registration)

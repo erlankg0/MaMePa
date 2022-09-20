@@ -18,20 +18,24 @@ Signature
 """
 
 
-class Name(models.Model):
-    child_name = models.CharField(
+class Person(models.Model):
+    name = models.CharField(
         max_length=256,
-        verbose_name="Çocuk Ad Soyad",
-        help_text="Çocuk Ad Soyad\nChild's Name Surname\nИмя ребенка Фамилия",
+        verbose_name="Ad\nName\nИмя",
+        help_text="Ad\nName\nребёнка",
     )
-    child_age = models.PositiveSmallIntegerField(
+    surname = models.CharField(
+        max_length=256,
+        verbose_name="Soyad\nSurname\nФамилия",
+    )
+
+
+# Registration MaMePa Guests
+
+class Child(Person):
+    age = models.PositiveSmallIntegerField(
         verbose_name="Yaş / Age / ВОЗРАСТ",
         help_text="Yaş / Age / ВОЗРАСТ",
-    )
-    permission_leave = models.BooleanField(
-        default=False,
-        verbose_name="Yalnız Gidebilir mi ?",
-        help_text="Yalnız Gidebilir mi ?\nCan child leave the club alone ?\nМожет ли ребенок покинуть клуб один?"
     )
     diseases_allergy = models.CharField(
         max_length=256,
@@ -39,31 +43,48 @@ class Name(models.Model):
         verbose_name='Hastalık / Alerji\nDiseases/ Allergy\nЗаболевание / Аллергия',
         help_text='Hastalık / Alerji\nDiseases/ Allergy\nЗаболевание / Аллергия'
     )
-    parents_name = models.CharField(
-        max_length=512,
-        verbose_name="Ebeveyn Ad Soyad\nParents' Name Surname\nИмя и фамилия родителей",
-        help_text="Ebeveyn Ad Soyad\nParents' Name Surname\nИмя и фамилия родителей"
+
+    def __str__(self):
+        return f'Name {self.name} {self.surname} age {self.age} allergy {self.diseases_allergy}'
+
+
+class Parents(Person):
+
+    def __str__(self):
+        return f'{self.name} {self.surname}'
+
+
+class Registration(models.Model):
+    child = models.ForeignKey(
+        Child,
+        on_delete=models.CASCADE
     )
-    phone_number1 = models.CharField(
-        max_length=25,
-        verbose_name='Telefon   Numarası\nPhone Number\nTелефонный номер',
-        help_text='Telefon   Numarası\nPhone Number\nTелефонный номер'
+    parents = models.ForeignKey(
+        Parents,
+        on_delete=models.CASCADE
     )
-    phone_number2 = models.CharField(
-        max_length=25,
-        verbose_name='Telefon   Numarası\nPhone Number\nTелефонный номер',
-        help_text='Telefon   Numarası\nPhone Number\nTелефонный номер'
+    phone1 = models.CharField(
+        max_length=20,
+        verbose_name="Tel No\n Phone number\n Тел. номер",
+        help_text="+X(XXX)XXX-XXX-XXX",
+        unique=True
+    )
+    phone2 = models.CharField(
+        max_length=20,
+        verbose_name="Tel No\n Phone number\n Тел. номер",
+        help_text="+X(XXX)XXX-XXX-XXX",
+        unique=True
     )
     room_number = models.CharField(
-        max_length=4,
-        verbose_name='Oda No',
-        help_text='Oda No\nRoom Number\nНомер комнаты'
+        max_length=5,
+        verbose_name='Oda no\n Room number\n Номер комнаты',
+        help_text='Oda no\n Room number\n Номер комнаты'
     )
-    check_out_date = models.DateField(
-        verbose_name='Çıkış Tarihi/\nHotel Check-out Date /\nДата выезда из отеля',
-        help_text='Çıkış Tarihi/\nHotel Check-out Date /\nДата выезда из отеля'
+    permission_leave = models.BooleanField(
+        default=False,
+        verbose_name="Yalnız Gidebilir mi ?",
+        help_text="Yalnız Gidebilir mi ?\nCan child leave the club alone ?\nМожет ли ребенок покинуть клуб один?"
     )
-
     permission_foto = models.BooleanField(
         verbose_name='Foto izin\nРазрещение на фотографии',
         default=True
@@ -72,8 +93,14 @@ class Name(models.Model):
         verbose_name='Atöliyeye katılım izin\n Разщенение на мастер-класс',
         default=True
     )
+    check_out_date = models.DateField(
+        verbose_name='Çıkış Tarihi/\nHotel Check-out Date /\nДата выезда из отеля',
+        help_text='Çıkış Tarihi/\nHotel Check-out Date /\nДата выезда из отеля'
+    )
 
     def __str__(self):
         if self.permission_leave:
-            return f"Name :{self.child_name}\n Room number: {self.room_number}\n Permission : ÇIKABİLİR"
-        return f"Name :{self.child_name}\n Room number: {self.room_number}\n Permission : ÇIKAMAZ "
+            return f"Name :{self.child.name}\n Room number: {self.room_number}\n Permission : ÇIKABİLİR"
+        return f"Name :{self.child.name}\n Room number: {self.room_number}\n Permission : ÇIKAMAZ "
+
+

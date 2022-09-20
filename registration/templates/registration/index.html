@@ -1,3 +1,187 @@
 {% extends 'base2.html' %}
 {% load static %}
 
+{% block header %}
+    {% include "../include/header.html" %}
+{% endblock header %}
+    
+
+{% block content %}
+<section class="section section-xl">
+    <div class="container">
+      <div
+        class="row row-50 justify-content-lg-between align-items-lg-center"
+      >
+        <div class="col-lg-6">
+          <div class="box-img-animate">
+            <div
+              class="box-img-animate-item"
+              data-parallax-scroll='{"y": 0, "x": 140,  "smoothness": 50 }'
+            >
+              <img
+                src="{% static 'registration/images/afisler/babysitting.jpeg' %}"
+                alt=""
+              />
+            </div>
+            <div
+              class="box-img-animate-item"
+              data-parallax-scroll='{"y": 150, "x": 0,  "smoothness": 50 }'
+            >
+              <img
+                src="{% static 'registration/images/afisler/birthday_party.jpg' %}"
+                alt=""
+              />
+            </div>
+            <div
+              class="box-img-animate-item"
+              data-parallax-scroll='{"y":70, "x": -250,  "smoothness": 50 }'
+            >
+              <img
+                src="{% static 'registration/images/afisler/bubble_show.jpg' %}"
+                alt=""
+              />
+            </div>
+            <div
+              class="box-img-animate-item"
+              data-parallax-scroll='{"y":20, "x": 20,  "smoothness": 50 }'
+            >
+              <img
+                src="{% static 'registration/images/afisler/magic_show.jpg' %}"
+                alt=""
+              />
+            </div>
+            <div
+              class="box-img-animate-item"
+              data-parallax-scroll='{"y":60, "x": 70,  "smoothness": 50 }'
+            >
+              <img
+                src="{% static 'registration/images/afisler/sensory_games.jpg' %}"
+                alt=""
+              />
+            </div>
+            <div
+              class="box-img-animate-item"
+              data-parallax-scroll='{"y":0, "x": 140,  "smoothness": 50 }'
+            >
+              <img
+                src="{% static 'registration/images/afisler/partido_photo.jpg' %}"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-xl-5">
+          <div class="innset-xl-left-70">
+            <h3>Наша Миссия</h3>
+            <p class="text-opacity-80">
+              Наилучшие интересы ребенка и его целостное развитие имеют
+              первостепенное значение.
+            </p>
+            <div class="row row-50">
+              <div class="col-md-6 col-lg-12">
+                <div class="box-icon-modern">
+                  <div class="box-icon-inner decorate-triangle">
+                    <span
+                      class="icon-xl linearicons-baby2 icon-primary"
+                    ></span>
+                  </div>
+                  <div class="box-icon-caption">
+                    <h4><a href="#">Место где каждый ребенок</a></h4>
+                    <p>
+                      Каждый ребенок – ученый. <br />
+                      Каждый ребенок - художник. <br />
+                      Каждый ребенок – личность. <br />
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-12">
+                <div class="box-icon-modern">
+                  <div class="box-icon-inner decorate-circle">
+                    <span class="icon-xl linearicons-sun icon-primary"></span>
+                  </div>
+                  <div class="box-icon-caption">
+                    <h4><a href="#">Уход и защита</a></h4>
+                    <p>
+                      Мы обеспечиваем уход и защиту для ваших детей в нашем
+                      семейном клубе Ma&Me&Pa.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-12">
+                <div class="box-icon-modern">
+                  <div class="box-icon-inner decorate-rectangle">
+                    <span
+                      class="icon-xl linearicons-umbrella2 icon-primary"
+                    ></span>
+                  </div>
+                  <div class="box-icon-caption">
+                    <h4><a href="#">Развития.</a></h4>
+                    <p>
+                      Ребенок, который двигается, — это ребенок, который
+                      учится<br />
+                      «Относится к ребенку» — основное правило.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    class="parallax-container bg-gray-600"
+    data-parallax-img="images/parallax-img-2.jpg"
+  >
+    <div class="parallax-content section-xxl text-center">
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-md-9 col-lg-8 col-xl-8 wow-outer">
+            <div class="innset-xl-right-30 innset-xl-left-30">
+              <div class="wow slideInDown">
+                <h3>Подпишитесь, чтобы быть в курсе</h3>
+                <form
+                  class="rd-form rd-mailform rd-form-inline"
+                  data-form-output="form-output-global"
+                  data-form-type="subscribe"
+                  method="post"
+                  action="bat/rd-mailform.php"
+                >
+                  <div class="form-wrap">
+                    <input
+                      class="form-input"
+                      id="subscribe-form-email"
+                      type="email"
+                      name="email"
+                      data-constraints="@Email @Required"
+                    />
+                    <label class="form-label" for="subscribe-form-email"
+                      >Ваш E-mail</label
+                    >
+                  </div>
+                  <div class="form-button">
+                    <button
+                      class="button button-primary button-lg"
+                      type="submit"
+                    >
+                      Subscribe
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}
+    
+
+{% block footer %}
+    {% include "../include/footer.html" %}
+{% endblock footer %}
+    
