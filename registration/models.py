@@ -18,22 +18,17 @@ Signature
 """
 
 
-class Person(models.Model):
-    name = models.CharField(
+class Registration(models.Model):
+    child_name = models.CharField(
         max_length=256,
         verbose_name="Ad\nName\nИмя",
-        help_text="Ad\nName\nребёнка",
+        help_text="Ad\nName\nИмя",
     )
-    surname = models.CharField(
+    child_surname = models.CharField(
         max_length=256,
         verbose_name="Soyad\nSurname\nФамилия",
     )
-
-
-# Registration MaMePa Guests
-
-class Child(Person):
-    age = models.PositiveSmallIntegerField(
+    child_age = models.PositiveSmallIntegerField(
         verbose_name="Yaş / Age / ВОЗРАСТ",
         help_text="Yaş / Age / ВОЗРАСТ",
     )
@@ -43,25 +38,14 @@ class Child(Person):
         verbose_name='Hastalık / Alerji\nDiseases/ Allergy\nЗаболевание / Аллергия',
         help_text='Hastalık / Alerji\nDiseases/ Allergy\nЗаболевание / Аллергия'
     )
-
-    def __str__(self):
-        return f'Name {self.name} {self.surname} age {self.age} allergy {self.diseases_allergy}'
-
-
-class Parents(Person):
-
-    def __str__(self):
-        return f'{self.name} {self.surname}'
-
-
-class Registration(models.Model):
-    child = models.ForeignKey(
-        Child,
-        on_delete=models.CASCADE
+    parents_name = models.CharField(
+        max_length=256,
+        verbose_name="Ad\nName\nИмя",
+        help_text="Ad\nName\nФамилия",
     )
-    parents = models.ForeignKey(
-        Parents,
-        on_delete=models.CASCADE
+    parents_surname = models.CharField(
+        max_length=256,
+        verbose_name="Soyad\nSurname\nФамилия",
     )
     phone1 = models.CharField(
         max_length=20,
@@ -100,7 +84,10 @@ class Registration(models.Model):
 
     def __str__(self):
         if self.permission_leave:
-            return f"Name :{self.child.name}\n Room number: {self.room_number}\n Permission : ÇIKABİLİR"
-        return f"Name :{self.child.name}\n Room number: {self.room_number}\n Permission : ÇIKAMAZ "
+            return f"Name :{self.child_name}\n Room number: {self.room_number}\n Permission : ÇIKABİLİR"
+        return f"Name :{self.child_name}\n Room number: {self.room_number}\n Permission : ÇIKAMAZ "
 
-
+    class Meta:
+        ordering = ['-room_number']
+        verbose_name = 'Çocuk Kayıt.\nChild Registration\nРегистрация ребенка'
+        verbose_name_plural = "Çocuk Kayıtlar.\nChild Registration's\nРегистрации детей"
