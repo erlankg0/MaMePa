@@ -1,8 +1,8 @@
-from django.http import HttpResponseRedirect
+import re
 from django.shortcuts import render, redirect
 from django.views.generic import View, FormView
-from registration.models import Registration
-from registration.forms import RegistrationForm
+
+from registration.forms import RegistrationForm, RegistraionFormV1
 
 
 class Home(View):
@@ -26,15 +26,16 @@ class RegisterPage(FormView):
 
 
 def registration_child(request):
-    form = RegistrationForm()
-    if request.method == "POST":
-        form = RegistrationForm(request.POST)
+    if request.method == 'POST':
+        form = RegistraionFormV1(request.POST)
         if form.is_valid():
-            print(form)
-            form.save()
-            return redirect('/')
-    context = {
-        'forms': form
-    }
-
-    return render(request, 'registration/forms.html', context)
+            try:
+                print(form.cleaned_data)
+                return redirect('home')
+            except Exception:
+                form.add_error(None, 'Ошибка регистрации!')
+    else:
+        form = RegistraionFormV1()
+    return render(request, 'registration/form_register.html', context={
+        "forms": form
+    })

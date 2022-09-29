@@ -64,7 +64,7 @@ WSGI_APPLICATION = 'mamepa.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mamepa',
+        'NAME': 'utopia',
         'USER': 'postgres',
         'PASSWORD': '123321',
         'HOST': 'localhost',
