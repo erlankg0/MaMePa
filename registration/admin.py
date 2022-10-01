@@ -1,5 +1,5 @@
 from django.contrib import admin
-from registration.models import Registration
+from registration.models import Person, Registration
 
 
 @admin.register(Registration)
@@ -15,5 +15,8 @@ class RegistrationAdmin(admin.ModelAdmin):
         "room_number",
         "permission_leave",
     )
+@admin.register(Person)
+class PersonAdmin(admin.ModelAdmin):
+    pass
 
 

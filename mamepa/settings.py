@@ -1,5 +1,4 @@
 from pathlib import Path
-import psycopg2
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'registration',
+    'registration.apps.RegistrationConfig',
 ]
 
 MIDDLEWARE = [
@@ -63,15 +62,22 @@ WSGI_APPLICATION = 'mamepa.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'utopia',
-        'USER': 'postgres',
-        'PASSWORD': '123321',
-        'HOST': 'localhost',
-        'PORT': '5432',
-
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'utopia',
+#         'USER': 'postgres',
+#         'PASSWORD': '123321',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

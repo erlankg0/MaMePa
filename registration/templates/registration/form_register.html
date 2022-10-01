@@ -13,10 +13,10 @@
               style="visibility: visible; animation-name: slideInDown"
             >
               <h3>Ma&Me&Pa Utopia World Hotel: Регистрация</h3>
-              <form action="{% url 'home' %}" method="post">
+              <form action=" {% url 'home' %}" method="post">
                 {% csrf_token %}
-                {{ forms.child_name }}
-                k
+                {{ form.as_p }}
+                
                 <div class="form-group row">
                   <div class="col-sm-10">
                     <button type="submit" class="btn btn-primary">

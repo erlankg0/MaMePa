@@ -1,3 +1,4 @@
+from unittest.util import _MAX_LENGTH
 from django.db import models
 
 """
@@ -16,7 +17,11 @@ Signature
 
 
 """
+class Person(models.Model):
+    name = models.CharField(max_length=30)
 
+    def __str__(self) -> str:
+        return self.name
 
 class Registration(models.Model):
     child_name = models.CharField(
