@@ -1,18 +1,77 @@
 from dataclasses import fields
-from django.forms import ModelForm, TextInput, Select, DateInput
+from django.forms import ModelForm, TextInput, Select, DateInput, FileInput, NumberInput, EmailInput
 
-from registration.models import Registration, Person
+from registration.models import Child, Person
 
 
 class PersonAdd(ModelForm):
     class Meta:
         model = Person
-        fields = '__all__'
+        fields = [
+            'name',
+            'surname',
+            'age',
+            'position',
+            'phone',
+            'photo',
+            'end_work',
+        ]
+        exclude = ['start_work']
+
+        widgets = {
+            'name': TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'type': 'text',
+                }
+            ),
+            'surname': TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'type': 'text',
+                }
+            ),
+            'age': NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'type': 'number',
+                }
+            ),
+            'position': Select(
+                attrs={
+                    'class': 'form-control',
+                    'type': 'text',
+                }
+            ),
+            'phone': TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'type': 'text',
+                }
+            ),
+            'photo': FileInput(
+                attrs={
+                    'class': 'form-control',
+                    'type': 'file',
+                }
+            ),
+            'end_work': DateInput(
+                attrs={
+                    'class': 'form-control',
+                    'type': 'date',
+                }
+            ),
+        }
+
+
 
 class AddChildForm(ModelForm):
+    required_attribute_css_class = 'col-sm-2 col-form-label'
+
     class Meta:
-        model = Registration
+        model = Child
         fields = [
+            'child_photo',
             'child_name',
             'child_surname',
             'child_age',
@@ -23,6 +82,7 @@ class AddChildForm(ModelForm):
             'room_number',
             'phone1',
             'phone2',
+            'parents_email',
             'permission_activiti',
             'permission_foto',
             'check_out_date',
@@ -31,6 +91,12 @@ class AddChildForm(ModelForm):
         exclude = ['slug', ]
 
         widgets = {
+            'child_photo': FileInput(
+                attrs={
+                    'class': 'form-control form-control-lg',
+                    'type': 'file',
+                }
+            ),
             "child_name": TextInput(
                 attrs={
                     "class": "form-control",
@@ -112,6 +178,14 @@ class AddChildForm(ModelForm):
                     "id": "inputPhoneNumber1",
                     "placeholder": "Tel No. Phone Number. Номер телефона",
                 }
+            ),
+            'parents_email': EmailInput(
+              attrs={
+                  'class': 'form-control',
+                  'type': 'email',
+                  'placeholder': 'Email Э-почта',
+                  'value': 'example@exmaple.com',
+              }
             ),
             "permission_foto": Select(
                 attrs={

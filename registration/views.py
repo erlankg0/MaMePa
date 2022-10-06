@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views.generic import View
 from django.views.generic.edit import FormView
-
-from registration.forms import AddChildForm
+from django.views.generic.base import TemplateView
+from registration.forms import AddChildForm, PersonAdd
 
 
 # Main Page
@@ -11,10 +11,23 @@ class Home(View):
         return render(request=request, template_name="registration/index.html")
 
 
+class Admin(View):
+    def get(self, request):
+        return render(request, 'admin_login.html')
+
+
+class BabySitting(TemplateView):
+    template_name = 'registration/baby_sitting.html'
+
+
 class PersonAdd(FormView):
+    form_class = PersonAdd
+    template_name = 'registration/form.html'
+    success_url = 'add_child'
 
-
-    pass
+    def form_valid(self, form):
+        form.save()
+        return super(PersonAdd, self).form_valid(form)
 
 
 class ChildAdd(FormView):
@@ -23,25 +36,10 @@ class ChildAdd(FormView):
     success_url = '/'
 
     def form_valid(self, form):
-        form.child_name = self.request.POST.get('child_name')
-        form.child_surname = self.request.POST.get('child_surname')
-        form.child_age = self.request.POST.get('child_age')
-        form.permission_leave = self.request.POST.get('permission_leave')
-        form.diseases_allergy = self.request.POST.get('diseases_allergy')
-        form.parents_name = self.request.POST.get('parents_name')
-        form.parents_surname = self.request.POST.get('parents_surname')
-        form.phone1 = self.request.POST.get('phone1')
-        form.phone2 = self.request.POST.get('phone2')
-        form.permission_foto = self.request.POST.get('permission_foto')
-        form.permission_activiti = self.request.POST.get('permission_activiti')
-        form.check_out_date = self.request.POST.get('check_out_date')
-        if form.child_age <= 3:
-            return redirect('/')
-        else:
-            form.save()
-        return super().form_valid(form)
+        form.save()
+        return super(ChildAdd, self).form_valid(form)
 
-#
+
 # data = {
 # ...     'child_name' : 'Daniela',
 # ...     'child_surname' : 'Abdraimoe',
@@ -56,3 +54,10 @@ class ChildAdd(FormView):
 # ...     'phone2' : '54565465656',
 # ...     'check_out_date': '2023-01-01'
 # ... }
+
+
+def add_child(request):
+    form = ChildAdd()
+    if request.method == 'POST':
+        pass
+    return render(request, 'registration/form_register.html', {})

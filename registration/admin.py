@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from registration.models import Registration, Person
+from registration.models import Child, Person
 
 
 @admin.register(Person)
@@ -27,7 +27,7 @@ class PersonAdmin(admin.ModelAdmin):
         'phone',
         'position',
     )
-    prepopulated_fields = {'slug' : ('name', 'surname', 'age', 'position')}
+    prepopulated_fields = {'slug': ('name', 'surname', 'age', 'position')}
 
     def get_photo(self, obj):
         if obj.photo:
@@ -36,7 +36,7 @@ class PersonAdmin(admin.ModelAdmin):
             return '-'
 
 
-@admin.register(Registration)
+@admin.register(Child)
 class RegistrationAdmin(admin.ModelAdmin):
     list_display = (
 
@@ -68,7 +68,7 @@ class RegistrationAdmin(admin.ModelAdmin):
     )
 
     def get_photo(self, obj):
-        if obj.photo:
+        if obj.child_photo:
             return mark_safe('<img src="{0}" width="90">')
         else:
             return '-'

@@ -1,5 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.shortcuts import reverse
 
 """
 Child Name char(256)
@@ -61,6 +62,12 @@ class Person(models.Model):
         max_length=256,
         verbose_name='Tel No:\n Номер телефона'
     )
+    start_work = models.DateField(
+        auto_now_add=True
+    )
+    end_work = models.DateField(
+        blank=True, null=True
+    )
     slug = models.SlugField(
         verbose_name='URL',
         unique=True
@@ -69,9 +76,13 @@ class Person(models.Model):
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = slugify((self.name, self.surname, self.age, self.position))
+        super(Person, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
         return '{0} {1} Tel No| {2}'.format(self.name, self.surname, self.phone)
+
+    def get_absolute_url(self):
+        return reverse('persons', kwargs={'slug': self.slug})
 
     class Meta:
         ordering = ['name']
@@ -79,7 +90,7 @@ class Person(models.Model):
         verbose_name_plural = "Personal Kayıtlar.\nPersonal Registration's\nРегистрации персонала"
 
 
-class Registration(models.Model):
+class Child(models.Model):
     # Choice
     YES_OR_NO = (
         ('YES', 'YES'),
@@ -116,6 +127,12 @@ class Registration(models.Model):
     parents_surname = models.CharField(
         max_length=256,
         verbose_name="Soyad\nSurname\nФамилия",
+    )
+    parents_email = models.EmailField(
+        max_length=256,
+        verbose_name='Email\n Э-почта',
+        blank=True,
+        null=True
     )
     phone1 = models.CharField(
         max_length=20,
@@ -155,6 +172,7 @@ class Registration(models.Model):
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = slugify((self.child_name, self.child_surname, self.room_number))
+        super(Child, self).save(*args, **kwargs)
 
     def __str__(self):
         if self.permission_leave:

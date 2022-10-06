@@ -76,7 +76,6 @@ DATABASES = {
         'PASSWORD': '123321era',
         'HOST': 'localhost',
         'PORT': '5555',
-
     }
 }
 

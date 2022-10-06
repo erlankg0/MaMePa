@@ -1,171 +1,177 @@
 {% extends 'base2.html' %} {% block content %}
 <section
-  class="parallax-container bg-gray-600"
-  data-parallax-img="images/parallax-img-2.jpg"
+        class="parallax-container bg-gray-600"
+        data-parallax-img="images/parallax-img-2.jpg"
 >
-  <div class="parallax-content section-xxl text-center">
-    <div class="container">
-      <div class="row justify-content-md-center">
-        <div class="col-md-9 col-lg-8 col-xl-8 wow-outer">
-          <div class="innset-xl-right-30 innset-xl-left-30">
-            <div
-              class="wow slideInDown"
-              style="visibility: visible; animation-name: slideInDown"
-            >
-              <h3>Ma&Me&Pa Utopia World Hotel: Регистрация</h3>
-              <form method="post" action="{% url 'home' %}">
-                {% csrf_token %}
-                <!-- child values-->
-                <div class="form-group row">
-                  <label for="inputChildName" class="col-sm-2 col-form-label"
-                    >Имя ребёнка</label
-                  >
-                  <div class="col-sm-10">{{ forms.child_name}}</div>
-                </div>
-                <div class="form-group row">
-                  <label for="inputChildSurname" class="col-sm-2 col-form-label"
-                    >Фамилия ребёнка</label
-                  >
-                  <div class="col-sm-10">{{ forms.child_surname}}</div>
-                </div>
-                <div class="form-group row">
-                  <label for="inputChildAge" class="col-sm-2 col-form-label"
-                    >Возраст ребёнка</label
-                  >
-                  <div class="col-sm-10">{{ forms.child_age}}</div>
-                </div>
-                <!--Permission for leave -->
-                <fieldset class="form-group">
-                  <div class="row">
-                    <legend class="col-form-label col-sm-2 pt-0">
-                      Может ли ребёнок покинуть клуб один ?
-                    </legend>
-                    <div class="col-sm-10">
-                      <div class="form-check">
-                        {{ forms.permission_leave}}
-                        <label
-                          class="form-check-label"
-                          for="radio-leave-alone1"
+    <div class="parallax-content section-xxl text-center">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-9 col-lg-8 col-xl-8 wow-outer">
+                    <div class="innset-xl-right-30 innset-xl-left-30">
+                        <div
+                                class="wow slideInDown"
+                                style="visibility: visible; animation-name: slideInDown"
                         >
-                          Да
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        {{ forms.permission_leave}}
-                        <label
-                          class="form-check-label"
-                          for="radio-leave-alone2"
-                        >
-                          Нет
-                        </label>
-                      </div>
+                            <h3>Ma&Me&Pa Utopia World Hotel: Регистрация</h3>
+                            <form method="post" action="{% url 'home' %}">
+                                {% csrf_token %}
+                                <!-- child values-->
+                                <div class="form-group row">
+
+                                    <label for="formFile" class="col-2 col-form-label">Фотография Ребёнка.</label>
+                                    {{ form.child_photo }}
+
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputChildName" class="col-sm-2 col-form-label"
+                                    >Имя ребёнка</label
+                                    >
+                                    <div class="col-sm-10">{{ forms.child_name}}</div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputChildSurname" class="col-sm-2 col-form-label"
+                                    >Фамилия ребёнка</label
+                                    >
+                                    <div class="col-sm-10">{{ forms.child_surname}}</div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputChildAge" class="col-sm-2 col-form-label"
+                                    >Возраст ребёнка</label
+                                    >
+                                    <div class="col-sm-10">{{ forms.child_age}}</div>
+                                </div>
+                                <!--Permission for leave -->
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-2 pt-0">
+                                            Может ли ребёнок покинуть клуб один ?
+                                        </legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check">
+                                                {{ forms.permission_leave}}
+                                                <label
+                                                        class="form-check-label"
+                                                        for="radio-leave-alone1"
+                                                >
+                                                    Да
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                {{ forms.permission_leave}}
+                                                <label
+                                                        class="form-check-label"
+                                                        for="radio-leave-alone2"
+                                                >
+                                                    Нет
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <!--Parents values-->
+                                <div class="form-group row">
+                                    <label for="inputParentsName" class="col-sm-2 col-form-label"
+                                    >Имя Родителя</label
+                                    >
+                                    <div class="col-sm-10">{{ forms.parents_name}}</div>
+                                </div>
+                                <div class="form-group row">
+                                    <label
+                                            for="inputParentsSurname"
+                                            class="col-sm-2 col-form-label"
+                                    >Фамилия Родителя</label
+                                    >
+                                    <div class="col-sm-10">{{ forms.parents_surname}}</div>
+                                </div>
+                                <!--Room Number-->
+                                <div class="form-group row">
+                                    <label for="inputRoomNumber" class="col-sm-2 col-form-label"
+                                    >Номер комнаты</label
+                                    >
+                                    <div class="col-sm-10">{{ forms.room_number}}</div>
+                                </div>
+                                <!--Parents Phone numbers-->
+                                <div class="form-group row">
+                                    <label for="inputPhoneNumber1" class="col-sm-2 col-form-label"
+                                    >Номер телефона</label
+                                    >
+                                    <div class="col-sm-10">{{ forms.phone1}}</div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPhoneNumber2" class="col-sm-2 col-form-label"
+                                    >Номер телефона</label
+                                    >
+                                    <div class="col-sm-10">{{ forms.phone2}}</div>
+                                </div>
+                                <!--Permission foto-->
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-2 pt-0">
+                                            Разрешение на фотосъемку.
+                                        </legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check">
+                                                {{ forms.permission_foto}}
+                                                <label
+                                                        class="form-check-label"
+
+                                                >
+                                                    Да
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                {{ forms.permission_foto}}
+                                                <label
+                                                        class="form-check-label"
+
+                                                >
+                                                    Нет
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <!--Permission activiti-->
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-2 pt-0">
+                                            Может ли участвовать в кружках.
+                                        </legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check">
+                                                {{ forms.permission_activiti}}
+                                                <label
+                                                        class="form-check-label"
+
+                                                >
+                                                    Да
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                {{ forms.permission_activiti}}
+                                                <label
+                                                        class="form-check-label"
+
+                                                >
+                                                    Нет
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="form-group row">
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary">
+                                            Регистрация.
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                  </div>
-                </fieldset>
-                <!--Parents values-->
-                <div class="form-group row">
-                  <label for="inputParentsName" class="col-sm-2 col-form-label"
-                    >Имя Родителя</label
-                  >
-                  <div class="col-sm-10">{{ forms.parents_name}}</div>
                 </div>
-                <div class="form-group row">
-                  <label
-                    for="inputParentsSurname"
-                    class="col-sm-2 col-form-label"
-                    >Фамилия Родителя</label
-                  >
-                  <div class="col-sm-10">{{ forms.parents_surname}}</div>
-                </div>
-                <!--Room Number-->
-                <div class="form-group row">
-                  <label for="inputRoomNumber" class="col-sm-2 col-form-label"
-                    >Номер комнаты</label
-                  >
-                  <div class="col-sm-10">{{ forms.room_number}}</div>
-                </div>
-                <!--Parents Phone numbers-->
-                <div class="form-group row">
-                  <label for="inputPhoneNumber1" class="col-sm-2 col-form-label"
-                    >Номер телефона</label
-                  >
-                  <div class="col-sm-10">{{ forms.phone1}}</div>
-                </div>
-                <div class="form-group row">
-                  <label for="inputPhoneNumber2" class="col-sm-2 col-form-label"
-                    >Номер телефона</label
-                  >
-                  <div class="col-sm-10">{{ forms.phone2}}</div>
-                </div>
-                <!--Permission foto-->
-                <fieldset class="form-group">
-                  <div class="row">
-                    <legend class="col-form-label col-sm-2 pt-0">
-                      Разрешение на фотосъемку.
-                    </legend>
-                    <div class="col-sm-10">
-                      <div class="form-check">
-                        {{ forms.permission_foto}}
-                        <label
-                          class="form-check-label"
-                         
-                        >
-                          Да
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        {{ forms.permission_foto}}
-                        <label
-                          class="form-check-label"
-                        
-                        >
-                          Нет
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </fieldset>
-                <!--Permission activiti-->
-                <fieldset class="form-group">
-                  <div class="row">
-                    <legend class="col-form-label col-sm-2 pt-0">
-                      Может ли участвовать в кружках.
-                    </legend>
-                    <div class="col-sm-10">
-                      <div class="form-check">
-                        {{ forms.permission_activiti}}
-                        <label
-                          class="form-check-label"
-                         
-                        >
-                          Да
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        {{ forms.permission_activiti}}
-                        <label
-                          class="form-check-label"
-                        
-                        >
-                          Нет
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </fieldset>
-                <div class="form-group row">
-                  <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">
-                      Регистрация.
-                    </button>
-                  </div>
-                </div>
-              </form>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 {% endblock content %}
