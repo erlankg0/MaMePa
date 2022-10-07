@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.views.generic.edit import FormView
 from django.views.generic.base import TemplateView
 from registration.forms import AddChildForm, PersonAdd
+from django.core.mail import send_mail
+from mamepa.settings import EMAIL_HOST_USER
 
 
 # Main Page
@@ -13,17 +15,17 @@ class Home(View):
 
 class Admin(View):
     def get(self, request):
-        return render(request, 'admin_login.html')
+        return render(request, "admin_login.html")
 
 
 class BabySitting(TemplateView):
-    template_name = 'registration/baby_sitting.html'
+    template_name = "registration/baby_sitting.html"
 
 
 class PersonAdd(FormView):
     form_class = PersonAdd
-    template_name = 'registration/form.html'
-    success_url = 'add_child'
+    template_name = "registration/form_register.html"
+    success_url = "add_child"
 
     def form_valid(self, form):
         form.save()
@@ -32,11 +34,24 @@ class PersonAdd(FormView):
 
 class ChildAdd(FormView):
     form_class = AddChildForm  # Child Form
-    template_name = 'registration/form_register.html'  # HTML template
-    success_url = '/'
+    template_name = "registration/form_register.html"  # HTML template
+    success_url = "/"
 
     def form_valid(self, form):
-        form.save()
+        if int(self.request.POST.get("child_age")) <= 3:
+            return redirect("baby_sitting")
+
+        if self.request.POST.get("parents_email") != "example@exmaple.com":
+            send_mail('Добро пожаловать в наш семейный клуб MaMepa!',
+                      "Имя Фамилия ребёнка {0} {1} Isim Soyisim {0} {1} Name Surname {0} {1}".format(
+                          self.request.POST.get('child_name'), self.request.POST.get('child_surname')),
+                      EMAIL_HOST_USER,
+                      [str(self.request.POST.get('parents_email'))],
+                      False
+                      # to email
+                      )
+            # send_mail("", "", "", [""], False)
+            form.save()
         return super(ChildAdd, self).form_valid(form)
 
 
@@ -58,6 +73,6 @@ class ChildAdd(FormView):
 
 def add_child(request):
     form = ChildAdd()
-    if request.method == 'POST':
+    if request.method == "POST":
         pass
-    return render(request, 'registration/form_register.html', {})
+    return render(request, "registration/form_register.html", {})

@@ -1,6 +1,98 @@
 {% extends 'base2.html' %}
 {% load static %}
-
+{% block content %}
 {% block header %}
-{% include "../include/header.html" %}
-{% endblock header %}
+    {% include '../include/header.html' %}
+{% endblock %}
+<section class="section section-xl">
+    <div class="container">
+        <div
+                class="row row-50 justify-content-lg-between align-items-lg-center"
+        >
+            <div class="col-lg-6">
+                <div class="box-img-animate">
+                    <div
+                            class="box-img-animate-item"
+                            data-parallax-scroll='{"y": 0, "x": 140,  "smoothness": 50 }'
+                    >
+                        <a href="https://api.whatsapp.com/send?phone=905326213458&text=%D0%94%D0%BE%D0%B1%D1%80%D0%BE%D0%B3%D0%BE%20%D0%B2%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%B8%20%D1%81%D1%83%D1%82%D0%BE%D0%BA!%20%D0%AF%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB(%D0%B0)%20%D0%B1%D1%8B%D0%BB%20%D0%B2%D0%B7%D1%8F%D1%82%D1%8C%20%D0%BD%D1%8F%D0%BD%D1%8C%D0%BA%D1%83%20%20%3A%20%20%C4%B0yi%20g%C3%BCnlen%20ben%20dad%C4%B1m%C4%B1%20almak%20isterim.%20Good%20afternoon!%20I%20wanted%20to%20take%20a%20babysitter.%20">
+                            <img
+                                    src="{% static 'registration/images/afisler/fullsize_babysitting.jpeg' %}"
+                                    alt=""
+                            />
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-6 col-xl-5">
+                <div class="innset-xl-left-70">
+                    <a href="https://api.whatsapp.com/send?phone=905326213458&text=%D0%94%D0%BE%D0%B1%D1%80%D0%BE%D0%B3%D0%BE%20%D0%B2%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%B8%20%D1%81%D1%83%D1%82%D0%BE%D0%BA!%20%D0%AF%20%D1%85%D0%BE%D1%82%D0%B5%D0%BB(%D0%B0)%20%D0%B1%D1%8B%D0%BB%20%D0%B2%D0%B7%D1%8F%D1%82%D1%8C%20%D0%BD%D1%8F%D0%BD%D1%8C%D0%BA%D1%83%20%20%3A%20%20%C4%B0yi%20g%C3%BCnlen%20ben%20dad%C4%B1m%C4%B1%20almak%20isterim.%20Good%20afternoon!%20I%20wanted%20to%20take%20a%20babysitter.%20">
+                        <h3>Няня</h3></a>
+
+                    <p class="text-opacity-60">
+                        Индуальная няня поможет сделать ваш отдых более
+                        качественым.
+                        Стоимость 15$/€(280)TL
+                    </p>
+                    <div class="row row-50">
+                        <div class="col-md-6 col-lg-12">
+                            <div class="box-icon-modern">
+                                <div class="box-icon-inner decorate-triangle">
+                    <span
+                            class="icon-xl linearicons-baby2 icon-primary"
+                    ></span>
+                                </div>
+                                <div class="box-icon-caption">
+                                    <h4><a href="#">Место где каждый ребенок</a></h4>
+                                    <p>
+                                        Каждый ребенок – ученый. <br/>
+                                        Каждый ребенок - художник. <br/>
+                                        Каждый ребенок – личность. <br/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-12">
+                            <div class="box-icon-modern">
+                                <div class="box-icon-inner decorate-circle">
+                                    <span class="icon-xl linearicons-sun icon-primary"></span>
+                                </div>
+                                <div class="box-icon-caption">
+                                    <h4><a href="#">Уход и защита</a></h4>
+                                    <p>
+                                        Мы обеспечиваем уход и защиту для ваших детей в нашем
+                                        семейном клубе Ma&Me&Pa.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-12">
+                            <div class="box-icon-modern">
+                                <div class="box-icon-inner decorate-rectangle">
+                    <span
+                            class="icon-xl linearicons-umbrella2 icon-primary"
+                    ></span>
+                                </div>
+                                <div class="box-icon-caption">
+                                    <h4><a href="#">Развития.</a></h4>
+                                    <p>
+                                        Ребенок, который двигается, — это ребенок, который
+                                        учится<br/>
+                                        «Относится к ребенку» — основное правило.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+{% 
+{% block footer %}
+    {% include '../include/footer.html' %}
+{% endblock footer %}
+    %}

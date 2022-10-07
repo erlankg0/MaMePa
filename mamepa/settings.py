@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+from pickle import FALSE
 import psycopg2
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -120,3 +121,14 @@ STATICFILES_DIRS = (
     'registration/static',
 )
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# EMAIL
+
+EMAIL_HOST_USER = 'mamepautopiaworld@yandex.ru'
+EMAIL_HOST_PASSWORD = 'hjftmmshqbqdcvsu'
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+# DEFAULT_FROM_EMAIL = 'mamepautopiaworld@yandex.ru'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
