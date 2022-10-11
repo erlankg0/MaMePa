@@ -7,11 +7,11 @@
             </div>
             <div class="col-12">
               <ul class="footer-minimal-nav">
-                <li><a href="about-us.html">About Us</a></li>
-                <li><a href="#">Causes</a></li>
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Team</a></li>
-                <li><a href="contacts.html">Contacts</a></li>
+                <li><a href="{% url 'home' %}">Главная</a></li>
+                <li><a href="{% url 'add_child' %}">Регистрация</a></li>
+                <li><a href="#">Команда</a></li>
+                <li><a href="{% url 'contacts' %}">Контакты</a></li>
+                <li><a href="{% url 'baby_sitting' %}">Няня</a></li>
               </ul>
             </div>
             <div class="col-12">

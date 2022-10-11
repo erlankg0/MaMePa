@@ -1,34 +1,41 @@
-{% extends 'base2.html' %} {% block content %}
+{% extends 'base2.html' %}
+{% block header %}
+{% include "../include/header.html" %}
+{% endblock header %}
+{% block content %}
 <section
-  class="parallax-container bg-gray-600"
-  data-parallax-img="images/parallax-img-2.jpg"
+        class="parallax-container bg-gray-600"
+        data-parallax-img="images/parallax-img-2.jpg"
 >
-  <div class="parallax-content section-xxl text-center">
-    <div class="container">
-      <div class="row justify-content-md-center">
-        <div class="col-md-9 col-lg-8 col-xl-8 wow-outer">
-          <div class="innset-xl-right-30 innset-xl-left-30">
-            <div
-              class="wow slideInDown"
-              style="visibility: visible; animation-name: slideInDown"
-            >
-              <h3>Ma&Me&Pa Utopia World Hotel: Регистрация</h3>
-              <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <div class="form-group row">
-                  <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">
-                      Регистрация.
-                    </button>
-                  </div>
+    <div class="parallax-content section-xxl text-center">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-9 col-lg-8 col-xl-8 wow-outer">
+                    <div class="innset-xl-right-30 innset-xl-left-30">
+                        <div
+                                class="wow slideInDown"
+                                style="visibility: visible; animation-name: slideInDown"
+                        >
+                            <h3>Ma&Me&Pa Utopia World Hotel: Регистрация</h3>
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <div class="form-group row">
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary">
+                                            Регистрация.
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-              </form>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 {% endblock content %}
+{% block footer %}
+{% include "../include/footer.html" %}
+{% endblock footer %}

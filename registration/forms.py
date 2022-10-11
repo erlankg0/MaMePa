@@ -1,8 +1,9 @@
-from dataclasses import fields
-from django.forms import ModelForm, TextInput, Select, DateInput, FileInput, NumberInput, EmailInput
+from django.forms import ModelForm, TextInput, Select, DateInput, FileInput, NumberInput, EmailInput, Textarea
 
-from registration.models import Child, Person
+from registration.models import Child, Person, FeedBack
 
+
+# -------- Person form
 
 class PersonAdd(ModelForm):
     class Meta:
@@ -64,6 +65,7 @@ class PersonAdd(ModelForm):
         }
 
 
+# ------ Child form
 
 class AddChildForm(ModelForm):
     required_attribute_css_class = 'col-sm-2 col-form-label'
@@ -83,8 +85,8 @@ class AddChildForm(ModelForm):
             'phone1',
             'phone2',
             'parents_email',
-            'permission_activiti',
-            'permission_foto',
+            'permission_activity',
+            'permission_photo',
             'check_out_date',
 
         ]
@@ -180,14 +182,14 @@ class AddChildForm(ModelForm):
                 }
             ),
             'parents_email': EmailInput(
-              attrs={
-                  'class': 'form-control',
-                  'type': 'email',
-                  'placeholder': 'Email Э-почта',
-                  'value': 'example@exmaple.com',
-              }
+                attrs={
+                    'class': 'form-control',
+                    'type': 'email',
+                    'placeholder': 'Email Э-почта',
+                    'value': 'example@exmaple.com',
+                }
             ),
-            "permission_foto": Select(
+            "permission_photo": Select(
                 attrs={
                     'id': 'selectPermissionFoto',
                     "class": "form-control",
@@ -195,7 +197,7 @@ class AddChildForm(ModelForm):
                     "title": "Разрешение на видеосъемку: Я разрешаю вам делать фотографии моего ребенка и использовать их в своих рекламных и материалах для печати или в Интернете.",
                 }
             ),
-            "permission_activiti": Select(
+            "permission_activity": Select(
                 attrs={
                     'id': 'selectPermissionActivity',
                     "title": "Я разрешаю своему ребенку самому посещать семинары в семейном клубе Ma&Me&Pa, использовать соответствующие  материалы / инструменты и проводить свободное время на игровой площадке. ВСЯ ОТВЕТСТВЕННОСТЬ ЛЕЖИТ НА МНЕ.",
@@ -207,6 +209,55 @@ class AddChildForm(ModelForm):
                 attrs={
                     'class': 'form-control',
                     'type': 'date',
+                }
+            )
+        }
+
+
+# ----- FeedBack form
+
+class AddFeedBack(ModelForm):
+    class Meta:
+        model = FeedBack
+        fields = (
+            'name',
+            'phone',
+            'email',
+            'message',
+        )
+
+        widgets = {
+            'name': TextInput(
+                attrs={
+                    'class': 'form-input',
+                    'id': "contact-name",
+                    'type': "text",
+                    'data-constraints': "@Required",
+                }
+            ),
+            'phone': TextInput(
+                attrs={
+                    'class': "form-input",
+                    'id': "contact-phone",
+                    'typy': "text",
+                    'name': "phone",
+                    'data-constraints': "@Numeric",
+
+                }
+            ),
+            'email': EmailInput(
+                attrs={
+                    'class': "form-input",
+                    'id': "contact-email",
+                    'type': "email",
+                    'data-constraints': "@Email @Required",
+                }
+            ),
+            'message': Textarea(
+                attrs={
+                    'class': "form-input",
+                    'id': "contact-message",
+                    'data-constraints': "@Required",
                 }
             )
         }

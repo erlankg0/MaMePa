@@ -1,9 +1,10 @@
 {% extends 'base2.html' %}
 {% load static %}
-{% block content %}
 {% block header %}
     {% include '../include/header.html' %}
-{% endblock %}
+{% endblock header%}
+{% block content %}
+
 <section class="section section-xl">
     <div class="container">
         <div
@@ -91,8 +92,6 @@
     </div>
 </section>
 {% endblock content %}
-{% 
 {% block footer %}
     {% include '../include/footer.html' %}
 {% endblock footer %}
-    %}

@@ -72,7 +72,7 @@ WSGI_APPLICATION = 'mamepa.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'utopia',
+        'NAME': 'utopiaworld',
         'USER': 'postgres',
         'PASSWORD': '123321era',
         'HOST': 'localhost',
@@ -123,10 +123,10 @@ STATICFILES_DIRS = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # EMAIL
 
-EMAIL_HOST_USER = 'mamepautopiaworld@yandex.ru'
-EMAIL_HOST_PASSWORD = 'hjftmmshqbqdcvsu'
+EMAIL_HOST_USER = 'utopiaworld@bk.ru'
+EMAIL_HOST_PASSWORD = 'gAUJ91TmQx2tcbcYQ1D2'
 
-EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 465
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True

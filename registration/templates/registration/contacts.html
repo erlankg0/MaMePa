@@ -1,0 +1,91 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block header %}
+{% include "../include/header.html" %}
+{% endblock header %}
+
+
+{% block content %}
+<section class="section section-lg text-center bg-default">
+    <div class="container">
+        <div class="row row-50">
+            <div class="col-md-6 col-lg-4">
+                <div class="box-icon-classic">
+                    <div class="box-icon-inner decorate-triangle decorate-color-secondary"><span
+                            class="icon-xl linearicons-phone-incoming icon-gradient-1"></span></div>
+                    <div class="box-icon-caption">
+                        <h4><a href="https://api.whatsapp.com/send?phone=905326213458&text=Доброго%20времени%20суток!">+90
+                            532 621 34 58
+                        </a></h4>
+                        <p>WhatsApp/Telegram</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="box-icon-classic">
+                    <div class="box-icon-inner decorate-circle decorate-color-secondary-2"><span
+                            class="icon-xl linearicons-map2 icon-gradient-2"></span></div>
+                    <div class="box-icon-caption">
+                        <h4><a href="https://goo.gl/maps/Pv84VXo4aKs5BnVz5">Beldesi Karagedik Mavkii, Merkez Sk., 07430
+                            Alanya/Antalya</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="box-icon-classic">
+                    <div class="box-icon-inner decorate-rectangle decorate-color-primary"><span
+                            class="icon-xl linearicons-paper-plane icon-gradient-3"></span></div>
+                    <div class="box-icon-caption">
+                        <h4><a href="mailto:utopiaworld@bk.ru">utopiaworld@bk.ru</a></h4>
+                        <p>Наша электроная почта.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact us-->
+<section class="section section-lg bg-gray-1 text-center">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-9 col-lg-7">
+                <h3>Обратная связь с нами</h3>
+                <!-- RD Mailform-->
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-wrap">
+                        {{ form.name }}
+                        <label class="form-label" for="contact-name">Имя Фамилия</label>
+                    </div>
+                    <div class="form-wrap">
+                        {{ form.email}}
+                        <label class="form-label" for="contact-email">E-mail</label>
+                    </div>
+                    <div class="form-wrap">
+                        {{ form.phone }}
+                        <label class="form-label" for="contact-phone">Номер телефона</label>
+                    </div>
+                    <div class="form-wrap">
+                        <label class="form-label" for="contact-message">Сообщение</label>
+                        {{ form.message}}
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-sm-7 col-lg-5">
+                            <button class="button button-block button-block button-lg button-primary" type="submit">
+                                Отправить
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+
+{% block footer %}
+{% include "../include/footer.html" %}
+{% endblock footer %}
+

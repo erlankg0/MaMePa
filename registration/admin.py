@@ -1,6 +1,11 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from registration.models import Child, Person
+from registration.models import Child, Person, FeedBack
+
+
+@admin.register(FeedBack)
+class FeedBackAdmin(admin.ModelAdmin):
+    pass
 
 
 @admin.register(Person)
@@ -31,7 +36,7 @@ class PersonAdmin(admin.ModelAdmin):
 
     def get_photo(self, obj):
         if obj.photo:
-            return mark_safe('<img src="{0}" width="90">')
+            return mark_safe('<img src="{0}" width="90">').format(obj.photo)
         else:
             return '-'
 
@@ -69,6 +74,6 @@ class RegistrationAdmin(admin.ModelAdmin):
 
     def get_photo(self, obj):
         if obj.child_photo:
-            return mark_safe('<img src="{0}" width="90">')
+            return mark_safe('<img src="{0}" width="90">').format(obj.child_photo)
         else:
             return '-'

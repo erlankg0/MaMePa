@@ -1,31 +1,16 @@
 from django.db import models
-from django.template.defaultfilters import slugify
 from django.shortcuts import reverse
-
-"""
-Child Name char(256)
-Child age SmallInt
-Permission (Can child leave the club alone ?) Bool default False
-Diseases/ Allergy Char
-Parents name`s CharField
-Check-out-date from hotel date
-Room number
-
-Permission_foto
-Permission_activiti 
-
-Signature
+from django.template.defaultfilters import slugify
 
 
-"""
-
+# ---------- PERSON
 
 # ID - INT
 # name - Varchar
 # surname - Varchar
 # age - Int
 # photo - Img(Varchar)
-# position - Varchar
+# position - Varchar (choice)
 # phone - Varchar
 
 
@@ -90,6 +75,24 @@ class Person(models.Model):
         verbose_name_plural = "Personal Kayıtlar.\nPersonal Registration's\nРегистрации персонала"
 
 
+# ----------- Child`s
+
+
+# child_photo Varchar
+# child_name Varchar(256)
+# child_surname Varchar(256)
+# child_age Int
+# diseases_allergy Varchar(256)
+# permission_leave Boolean
+# parents_name Varchar(256)
+# parents_surname Varchar(256)
+# parents_email Varchar(email)
+# phone1 Varchar (256)
+# phone2Varchar (256)
+# permission_photo Boolean
+# permission_activity Boolean
+
+
 class Child(models.Model):
     # Choice
     YES_OR_NO = (
@@ -142,7 +145,9 @@ class Child(models.Model):
     phone2 = models.CharField(
         max_length=20,
         verbose_name="Tel No\n Phone number\n Тел. номер +X(XXX)XXX-XXX-XXX",
-        unique=True
+        unique=True,
+        blank=True,
+        null=True,
     )
     room_number = models.CharField(
         max_length=5,
@@ -153,13 +158,13 @@ class Child(models.Model):
         choices=YES_OR_NO,
         verbose_name="Yalnız Gidebilir mi ?",
     )
-    permission_foto = models.CharField(
+    permission_photo = models.CharField(
         max_length=3,
         verbose_name='Foto izin\nРазрещение на фотографии',
         choices=YES_OR_NO
 
     )
-    permission_activiti = models.CharField(
+    permission_activity = models.CharField(
         max_length=3,
         verbose_name='Atöliyeye katılım izin\n Разщенение на мастер-класс',
         choices=YES_OR_NO
@@ -183,3 +188,39 @@ class Child(models.Model):
         ordering = ['check_out_date']
         verbose_name = 'Çocuk Kayıt.\nChild Registration\nРегистрация ребенка'
         verbose_name_plural = "Çocuk Kayıtlar.\nChild Registration's\nРегистрации детей"
+
+
+#   ------- FeedBack
+# Name Varchar(256)
+# Email Varchar(256)
+# phone Varchar(256)
+# message Text
+
+class FeedBack(models.Model):
+    name = models.CharField(
+        max_length=256,
+        verbose_name='Name Surname İsim Soysism Имя Фамилия'
+    )
+    email = models.EmailField(
+        max_length=256,
+        verbose_name='E-mail'
+    )
+    phone = models.CharField(
+        max_length=30,
+        verbose_name='Phone Tel No Номер телефона'
+    )
+    message = models.TextField(
+        max_length=5000,
+        verbose_name="Message Сообщение"
+    )
+    date = models.DateField(
+        auto_now_add=True
+    )
+
+    class Meta:
+        verbose_name = 'Geri Dönüşüm'
+        verbose_name_plural = "Geri Dönüşümler"
+        ordering = ['-date']
+
+    def __str__(self):
+        return "{0} {1} Tarih {2}".format(self.name, self.email, self.date)
