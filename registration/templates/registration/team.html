@@ -1,0 +1,45 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block header %}
+{% include "../include/header.html" %}
+{% endblock header %}
+
+
+{% block content %}
+<section class="section section-lg bg-gray-1">
+    <div class="container">
+        <h3 class="text-center">Наша команда</h3>
+        <div class="row no-gutters">
+            {% for person in personals %}
+            <div class="col-md-6 col-lg-4">
+                <div class="team-classic">
+                    <div class="team-classic-figure">
+                        {% if person.photo != None %}
+                        <img src="{{ MEDIA_URL }}{{person.photo}}" alt="Person photo" width="390" height="252"/>
+                        {% else %}
+                        <img src="{% static 'registration/images/team-classic-1-390x252.jpg' %}" alt="" width="390"
+                             height="252"/>
+                        {% endif %}
+                        <ul class="team-classic-soc-list">
+                            <li><a class="icon icon-md fa-facebook" href="#"></a></li>
+                            <li><a class="icon icon-md fa-instagram" href="#"></a></li>
+                            <li><a class="icon icon-md fa-whatsapp" href="#"></a></li>
+                        </ul>
+                    </div>
+                    <div class="team-classic-caption">
+                        <h4><a class="team-name" href="#">{{ person.name}} {{ person.surname}}</a></h4>
+                        <p>{{ person.position}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+
+{% block footer %}
+{% include "../include/footer.html" %}
+{% endblock footer %}

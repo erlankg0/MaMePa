@@ -47,6 +47,18 @@ class Person(models.Model):
         max_length=256,
         verbose_name='Tel No:\n Номер телефона'
     )
+    facebook = models.CharField(
+        max_length=256,
+        verbose_name='Facebook(URL)',
+        blank=True,
+        null=True,
+    )
+    instagram = models.CharField(
+        max_length=256,
+        verbose_name='Instargram',
+        blank=True,
+        null=True,
+    )
     start_work = models.DateField(
         auto_now_add=True
     )

@@ -5,6 +5,13 @@ from django.views.generic.edit import FormView
 
 from mamepa.settings import EMAIL_HOST_USER
 from registration.forms import AddChildForm, PersonAdd, AddFeedBack
+from registration.models import Person
+
+
+# Admin custom page
+class Admin(View):
+    def get(self, request):
+        return render(request, "admin_login.html")
 
 
 # Main Page
@@ -13,35 +20,7 @@ class Home(View):
         return render(request=request, template_name="registration/index.html")
 
 
-class Contacts(FormView):
-    template_name = 'registration/contacts.html'
-    form_class = AddFeedBack
-    success_url = '/'
-
-    def form_valid(self, form):
-        form.save()
-        return super(Contacts, self).form_valid(form)
-
-
-class Admin(View):
-    def get(self, request):
-        return render(request, "admin_login.html")
-
-
-class BabySitting(FormView):
-    template_name = "registration/baby_sitting.html"
-
-
-class PersonAdd(FormView):
-    form_class = PersonAdd
-    template_name = "registration/form_register.html"
-    success_url = "add_child"
-
-    def form_valid(self, form):
-        form.save()
-        return super(PersonAdd, self).form_valid(form)
-
-
+# Child add Page
 class ChildAdd(FormView):
     form_class = AddChildForm  # Child Form
     template_name = "registration/form_register.html"  # HTML template
@@ -64,3 +43,38 @@ class ChildAdd(FormView):
         except ValueError('Ошибка регистрации'):
             form.save()
         return super(ChildAdd, self).form_valid(form)
+
+
+# Contacts Page
+class Contacts(FormView):
+    template_name = 'registration/contacts.html'
+    form_class = AddFeedBack
+    success_url = '/'
+
+    def form_valid(self, form):
+        form.save()
+        return super(Contacts, self).form_valid(form)
+
+
+# Team Page
+class Team(View):
+    def get(self, request):
+        personals = Person.objects.all()
+        context = {'personals': personals}
+        return render(request, 'registration/team.html', context)
+
+
+# Baby Page
+class BabySitting(FormView):
+    template_name = "registration/baby_sitting.html"
+
+
+# Person add Page(person/add)
+class PersonAdd(FormView):
+    form_class = PersonAdd
+    template_name = "registration/form_register.html"
+    success_url = "add_child"
+
+    def form_valid(self, form):
+        form.save()
+        return super(PersonAdd, self).form_valid(form)
