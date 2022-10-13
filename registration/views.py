@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.views.generic import View
@@ -24,10 +25,11 @@ class Home(View):
 class ChildAdd(FormView):
     form_class = AddChildForm  # Child Form
     template_name = "registration/form_register.html"  # HTML template
-    success_url = "/"
+    success_url = "/child/add"
 
     def form_valid(self, form):
         if int(self.request.POST.get("child_age")) <= 3:
+            messages.info(self.request, ("Ребенок не может зарегистрироваться! Обратитесь к ресепшену пожалуйста."))
             return redirect("baby_sitting")
         try:
             if self.request.POST.get("parents_email") != "example@exmaple.com":
@@ -36,11 +38,16 @@ class ChildAdd(FormView):
                               self.request.POST.get('child_name'), self.request.POST.get('child_surname')),
                           EMAIL_HOST_USER,
                           [str(self.request.POST.get('parents_email'))],
-                          False
+                          True
                           # to email
                           )
                 form.save()
-        except ValueError('Ошибка регистрации'):
+                messages.success(self.request, ("Успешная регистрация - Succesfully"))
+            else:
+                form.save()
+                messages.success(self.request, ("Успешная регистрация - Succesfully"))
+        except BaseException as Error:
+            messages.error("Ошибка")
             form.save()
         return super(ChildAdd, self).form_valid(form)
 
@@ -49,10 +56,11 @@ class ChildAdd(FormView):
 class Contacts(FormView):
     template_name = 'registration/contacts.html'
     form_class = AddFeedBack
-    success_url = '/'
+    success_url = '/contacts'
 
     def form_valid(self, form):
         form.save()
+        messages.success(self.request, ("Спасибо за обратный отзыв"))
         return super(Contacts, self).form_valid(form)
 
 

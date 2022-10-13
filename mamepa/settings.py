@@ -1,6 +1,5 @@
 from pathlib import Path
 import os
-from pickle import FALSE
 import psycopg2
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

@@ -44,7 +44,7 @@ class PersonAdmin(admin.ModelAdmin):
 @admin.register(Child)
 class RegistrationAdmin(admin.ModelAdmin):
     list_display = (
-
+        'get_photo',
         'child_name',
         'child_age',
         "room_number",
@@ -74,6 +74,6 @@ class RegistrationAdmin(admin.ModelAdmin):
 
     def get_photo(self, obj):
         if obj.child_photo:
-            return mark_safe('<img src="{0}" width="90">').format(obj.child_photo)
+            return mark_safe('<img src="{0}" width="90"/>').format(obj.child_photo)
         else:
             return '-'

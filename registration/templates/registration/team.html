@@ -15,16 +15,23 @@
             <div class="col-md-6 col-lg-4">
                 <div class="team-classic">
                     <div class="team-classic-figure">
-                        {% if person.photo != None %}
+                        {% if person.photo %}
                         <img src="{{ MEDIA_URL }}{{person.photo}}" alt="Person photo" width="390" height="252"/>
                         {% else %}
                         <img src="{% static 'registration/images/team-classic-1-390x252.jpg' %}" alt="" width="390"
                              height="252"/>
                         {% endif %}
                         <ul class="team-classic-soc-list">
-                            <li><a class="icon icon-md fa-facebook" href="#"></a></li>
-                            <li><a class="icon icon-md fa-instagram" href="#"></a></li>
-                            <li><a class="icon icon-md fa-whatsapp" href="#"></a></li>
+                            {% if person.facebook %}
+                            <li><a class="icon icon-md fa-facebook" href="{{person.facebook}}"></a></li>
+                            {% endif %}
+                            {% if person.instagram %}
+                            <li><a class="icon icon-md fa-instagram"
+                                   href="https://www.instagram.com/{{person.instagram}}/"></a></li>
+                            {% endif %}
+
+                            <li><a class="icon icon-md fa-whatsapp"
+                                   href="https://api.whatsapp.com/send?phone={{person.phone}}"></a></li>
                         </ul>
                     </div>
                     <div class="team-classic-caption">

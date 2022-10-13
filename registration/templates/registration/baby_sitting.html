@@ -1,7 +1,7 @@
 {% extends 'base2.html' %}
 {% load static %}
 {% block header %}
-    {% include '../include/header.html' %}
+{% include '../include/header.html' %}
 {% endblock header%}
 {% block content %}
 
@@ -9,7 +9,11 @@
     <div class="container">
         <div
                 class="row row-50 justify-content-lg-between align-items-lg-center"
-        >
+        >{% if messages %}
+            {% for message in messages %}
+            <h1> {{ message }}</h1>
+            {% endfor %}
+            {% endif %}
             <div class="col-lg-6">
                 <div class="box-img-animate">
                     <div
@@ -93,5 +97,5 @@
 </section>
 {% endblock content %}
 {% block footer %}
-    {% include '../include/footer.html' %}
+{% include '../include/footer.html' %}
 {% endblock footer %}

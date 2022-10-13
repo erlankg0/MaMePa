@@ -51,9 +51,11 @@
         <div class="row justify-content-md-center">
             <div class="col-md-9 col-lg-7">
                 <h3>Обратная связь с нами</h3>
+                <br>
                 <!-- RD Mailform-->
-                <form method="post" enctype="multipart/form-data">
+                <form method="post" enctype="multipart/form-data" action="{% url 'contacts' %}">
                     {% csrf_token %}
+
                     <div class="form-wrap">
                         {{ form.name }}
                         <label class="form-label" for="contact-name">Имя Фамилия</label>

@@ -16,10 +16,10 @@ from django.template.defaultfilters import slugify
 
 class Person(models.Model):
     POSITION = (
-        ('DIR', 'Departman Animasiyon Müdürü'),
-        ('SEF', 'Animasiyon Şef'),
-        ('ASEF', 'Animasiyon Şef Asistan'),
-        ('ANI', 'Animatör'),
+        ('Departman Animasiyon Müdürü', 'DIR'),
+        ('Animasiyon Şef', 'SEF'),
+        ('Animasiyon Şef Asistan', 'ASEF'),
+        ('Animatör', 'ANI'),
     )
     name = models.CharField(
         max_length=30,
